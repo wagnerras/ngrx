@@ -14,8 +14,19 @@ import { GoogleBooksService } from './book-list/books.service';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
+
+
   books$ = this.store.pipe(select(selectBooks));
   bookCollection$ = this.store.pipe(select(selectBookCollection));
+
+  ngOnInit() {
+    this.booksService
+      .getBooks()
+      .subscribe((Book) => {
+        console.log('book subscribe ->', Book)
+        this.store.dispatch(retrievedBookList({ Book }))
+      });
+  }
  
   onAdd(bookId) {
     this.store.dispatch(addBook({ bookId }));
@@ -30,12 +41,5 @@ export class AppComponent {
     private store: Store
   ) {}
  
-  ngOnInit() {
-    this.booksService
-      .getBooks()
-      .subscribe((Book) => {
-        console.log('book subscribe ->', Book)
-        this.store.dispatch(retrievedBookList({ Book }))
-      });
-  }
+  
 }

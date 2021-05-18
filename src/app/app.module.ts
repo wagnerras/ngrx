@@ -14,6 +14,9 @@ import { StoreModule } from '@ngrx/store';
 import { BookCollectionComponent } from './book-collection/book-collection.component';
 import { BookListComponent } from './book-list/book-list.component';
 
+import { EffectsModule } from '@ngrx/effects';
+import { BookEffects } from './effects/books.effects';
+
 @NgModule({
   declarations: [
     AppComponent, BookCollectionComponent, BookListComponent
@@ -23,6 +26,7 @@ import { BookListComponent } from './book-list/book-list.component';
    /*  StoreModule.forRoot({ books: booksReducer, collection: collectionReducer }), */
     StoreModule.forRoot({ books, collection }),
     HttpClientModule,
+    EffectsModule.forRoot([BookEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
