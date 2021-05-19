@@ -1,24 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY } from 'rxjs';
-import { map, mergeMap, catchError } from 'rxjs/operators';
-import { GoogleBooksService  } from '../book-list/books.service';
- 
+import { of } from 'rxjs';
+import { map, mergeMap, catchError, switchMap, tap, concatMap } from 'rxjs/operators';
+import { GoogleBooksService } from '../book-list/books.service';
+import { effectBooks, retrievedBookList } from '../state/books.actions'
+
+
+
 @Injectable()
 export class BookEffects {
- 
-  /* = createEloadBooks$ ffect(() => this.actions$.pipe(
-    ofType(''),
-    mergeMap(() => this.GoogleBooksService.getBooks()
-      .pipe(
-        map(books => ({ type: '[Movies API] Movies Loaded Success', payload: movies })),
-        catchError(() => EMPTY)
-      ))
-    )
-  );  */
- 
+
   constructor(
     private actions$: Actions,
-    private moviesService: GoogleBooksService
-  ) {}
+    private booksService: GoogleBooksService,
+  ) { }
+
+
+  loadBooks$ = createEffect(() => this.actions$.pipe(
+    ofType(effectBooks),
+    switchMap(() => this.booksService.getBooks()
+      .pipe(
+        tap(Book => console.log('effects =>>', Book)),
+       concatMap(Book => of(retrievedBookList({ Book })))
+      ))
+  )
+  );
+
 }

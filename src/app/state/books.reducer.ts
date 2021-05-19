@@ -9,7 +9,7 @@ export const booksReducer = createReducer(
   initialState,
   /* on(retrievedBookList, (state, { Book }) => [...Book]) */
   on(retrievedBookList, (state, {Book}) => {
-    console.log(Book)
+    //console.log('reducer =>', Book)
     return [...state, ...Book];
   })
 );

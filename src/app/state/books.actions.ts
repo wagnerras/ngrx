@@ -14,3 +14,5 @@ export const retrievedBookList = createAction(
   '[Book List/API] Retrieve Books Success',
   props<{ Book }>()
 );
+
+export const effectBooks = createAction('[book effects]')

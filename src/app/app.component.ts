@@ -6,6 +6,7 @@ import {
   retrievedBookList,
   addBook,
   removeBook,
+  effectBooks
 } from './state/books.actions';
 import { GoogleBooksService } from './book-list/books.service';
 
@@ -19,13 +20,19 @@ export class AppComponent {
   books$ = this.store.pipe(select(selectBooks));
   bookCollection$ = this.store.pipe(select(selectBookCollection));
 
+  constructor(
+    private booksService: GoogleBooksService,
+    private store: Store
+  ) {}
+
   ngOnInit() {
-    this.booksService
+    /* this.booksService
       .getBooks()
       .subscribe((Book) => {
-        console.log('book subscribe ->', Book)
+        //console.log('book subscribe ->', Book)
         this.store.dispatch(retrievedBookList({ Book }))
-      });
+      });*/
+      this.store.dispatch(effectBooks());
   }
  
   onAdd(bookId) {
@@ -36,10 +43,7 @@ export class AppComponent {
     this.store.dispatch(removeBook({ bookId }));
   }
  
-  constructor(
-    private booksService: GoogleBooksService,
-    private store: Store
-  ) {}
+  
  
   
 }

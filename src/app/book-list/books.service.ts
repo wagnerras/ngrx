@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
- 
-import { of, Observable } from 'rxjs';
+
+import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Book } from './books.model';
- 
+
 @Injectable({ providedIn: 'root' })
 export class GoogleBooksService {
-  constructor(private http: HttpClient) {}
- 
+  constructor(private http: HttpClient) { }
+
   getBooks(): Observable<Array<Book>> {
     return this.http
       .get<{ items: Book[] }>(
@@ -16,4 +16,6 @@ export class GoogleBooksService {
       )
       .pipe(map((books) => books.items || []));
   }
+
+
 }
