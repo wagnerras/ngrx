@@ -6,7 +6,7 @@ import {
   retrievedBookList,
   addBook,
   removeBook,
-  effectBooks
+  effectBooks,
 } from './state/books.actions';
 import { GoogleBooksService } from './book-list/books.service';
 
@@ -33,6 +33,7 @@ export class AppComponent {
         this.store.dispatch(retrievedBookList({ Book }))
       });*/
       this.store.dispatch(effectBooks());
+      //this.store.dispatch(testParameter({parameter: 'teste ok'}))
   }
  
   onAdd(bookId) {
