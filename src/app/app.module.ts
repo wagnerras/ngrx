@@ -16,10 +16,12 @@ import { BookListComponent } from './book-list/book-list.component';
 
 import { EffectsModule } from '@ngrx/effects';
 import { BookEffects } from './effects/books.effects';
+import { HighlightDirective } from './directives/highlight/highlight.directive';
+
 
 @NgModule({
   declarations: [
-    AppComponent, BookCollectionComponent, BookListComponent
+    AppComponent, BookCollectionComponent, BookListComponent, HighlightDirective
   ],
   imports: [
     BrowserModule,

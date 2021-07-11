@@ -9,7 +9,6 @@ export const collectionReducer = createReducer(
   on(addBook, (state, { bookId }) => {
     console.log("book id", bookId);
     if (state.indexOf(bookId) > -1) return state;
- 
     return [...state, bookId];
   })
 );

@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, mergeMap, catchError, switchMap, tap, concatMap } from 'rxjs/operators';
 import { GoogleBooksService } from '../book-list/books.service';
-import { effectBooks, retrievedBookList} from '../state/books.actions'
+import { effectBooks, retrievedBookList} from '../state/books.actions';
 
 
 
@@ -21,7 +21,7 @@ export class BookEffects {
     switchMap(() => this.booksService.getBooks()
       .pipe(
         tap(Book => console.log('effects =>>', Book)),
-       concatMap(Book => of(retrievedBookList({ Book })))
+        concatMap(Book => of(retrievedBookList({ Book })))
       ))
   )
   );

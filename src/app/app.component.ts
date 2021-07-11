@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
- 
+
 import { selectBookCollection, selectBooks } from './state/books.selectors';
 import {
   retrievedBookList,
@@ -23,7 +23,7 @@ export class AppComponent {
   constructor(
     private booksService: GoogleBooksService,
     private store: Store
-  ) {}
+  ) { }
 
   ngOnInit() {
     /* this.booksService
@@ -32,19 +32,19 @@ export class AppComponent {
         //console.log('book subscribe ->', Book)
         this.store.dispatch(retrievedBookList({ Book }))
       });*/
-      this.store.dispatch(effectBooks());
-      //this.store.dispatch(testParameter({parameter: 'teste ok'}))
+    //this.store.dispatch(testParameter({parameter: 'teste ok'}))
+    this.store.dispatch(effectBooks());
   }
- 
+
   onAdd(bookId) {
     this.store.dispatch(addBook({ bookId }));
   }
- 
+
   onRemove(bookId) {
     this.store.dispatch(removeBook({ bookId }));
   }
- 
-  
- 
-  
+
+
+
+
 }
